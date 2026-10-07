@@ -1,8 +1,14 @@
+> **Intentions are good; thought process is questionable.** STP remains delusional. Si vis pacem, para bellum.
+>
+> **Experimental. Not advice.** The short page is [README.md](README.md). This file is the expansion.
+
 # What to change in the 7 Oct notification
 
 Read on 7 Oct 2026 from the public commits, the pinned artifact, and `contracts/*.ag` at `8c8dc8ee`. `cargo test` was not run.
 
 The open pull's head is now `72767847` (7 Oct 13:44:58Z). See the next section. The code reading below is still the `8c8dc8ee` tree. The README commits do not touch it.
+
+<a id="readme-only"></a>
 
 ## Same day: `8c8dc8ee..2058c13c` is README only
 
@@ -35,6 +41,8 @@ Those headings exist on main `411b41bc`. `kcc-0020.md` there still says `Status:
 
 Nothing in this range is a reason to re-run the dispatch-tag check. The artifact was not in the diff.
 
+<a id="already-right"></a>
+
 ## What the note got right
 
 KCC20 state is amount, owner, owner_scheme, borrow_scheme, borrow_guard, extension_commitment. The default calls are `transfer(next states, witness)` and `transfer_delegator(witness)`. Owner schemes are the five bytes `0x00` through `0x04`. Borrow schemes are `0x00` through `0x03`.
@@ -47,6 +55,8 @@ KCC-0020 in kaspanet/kccs was not moved. Main is still `411b41bc` (1 Oct 13:15Z)
 
 The useful wallet check is the generated artifact around `28dbbe45`. That check holds. See below.
 
+<a id="landing"></a>
+
 ## Change the landing
 
 The sentence "merged pull request #1 from argent-lang/kcc20-review" is a fork merge, and `kcc20-review` is a branch name.
@@ -56,9 +66,13 @@ The sentence "merged pull request #1 from argent-lang/kcc20-review" is a fork me
 - `GET /repos/argent-lang/kcc20-review` is 404. The branch `kcc20-review` exists on argent-lang/kcc20-reference. Its tip is `28dbbe45` (7 Oct 09:56Z), the parent of the merge.
 - "PR number 1 means this repo is young" does not follow. The org pull #1 has been open since 10 Sep and now lists 18 commits. The fork's pull #1 is the merge that just closed.
 
+<a id="author"></a>
+
 ## Change the author
 
 The notification says Manyfestation pushed seven commits. The six content commits are Michael Sutton's, 5 Oct and 7 Oct. Manyfestation authored the merge commit `8c8dc8ee` only. Parent of `7a264039` is `5b2a2312`, the previous pin.
+
+<a id="minter"></a>
 
 ## Change the minter paragraph
 
@@ -72,6 +86,8 @@ So the integer supply allowance is conserved across one split, and the right to 
 
 The README says the new entrypoints do not yet have a full conformance suite. Three lifecycle tests is the coverage named there.
 
+<a id="seed"></a>
+
 ## Change "token seeding"
 
 `TokenSeed` does not create the initial token supply. `create` requires `amount == 0`, a supported scheme pair, and the seed's `extension_commitment`. It recreates the seed and emits one zero-token KCC20 output. The caller funds that output. The supply comes from `PublicMint.mint`.
@@ -79,6 +95,8 @@ The README says the new entrypoints do not yet have a full conformance suite. Th
 The README says a deployment should start with one `PublicMint`, at least one `TokenSeed`, and no initial token balances. Seed `split(new_owner)` is permissionless and has no half cap. Seed `reclaim` consumes a retiring seed and recreates the leader, so every transition leaves a seed. A new genesis would be a different covenant id. Seeds are how a stranger pays to create a receiving UTXO. They are not how the token amount enters the world.
 
 An amount-threshold guard of zero on that new UTXO lets borrowed receive add any positive amount later. The owner bytes are whatever `create` was given. Creation spends the caller's KAS, not the named owner's.
+
+<a id="commits"></a>
 
 ## What each commit is, from the files
 
@@ -118,9 +136,13 @@ Those match the artifact and the test `kcc20_dispatch_tags_match_spec_vectors`. 
 
 `8c8dc8ee` is the merge. Parents `5b2a2312` and `28dbbe45`.
 
+<a id="argent"></a>
+
 ## Argent master
 
 The board's Argent row was `232c6ee6` (#67, 5 Oct). Master is now `9a9f4b10` (#68, 7 Oct 08:24Z). The tags API returned length 0. The README still says the project is not yet release-ready, it is pinned to SilverScript v1.0.0, and careful early use is for someone who can review the generated `.sil`. #68 was not compiled on this desk. The reference pin and argent master are the same commit. That does not make Argent tagged.
+
+<a id="left"></a>
 
 ## Left as they were
 
