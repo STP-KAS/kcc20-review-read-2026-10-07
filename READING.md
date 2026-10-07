@@ -2,6 +2,39 @@
 
 Read on 7 Oct 2026 from the public commits, the pinned artifact, and `contracts/*.ag` at `8c8dc8ee`. `cargo test` was not run.
 
+The open pull's head is now `72767847` (7 Oct 13:44:58Z). See the next section. The code reading below is still the `8c8dc8ee` tree. The README commits do not touch it.
+
+## Same day: `8c8dc8ee..2058c13c` is README only
+
+The linked compare is [8c8dc8ee..898192dc](https://github.com/argent-lang/kcc20-reference/pull/1/changes/8c8dc8eeff73482ea7b3144e42c92bbf2a25068f..898192dc909dcda94ea65903ef4835b9af9f2054).
+
+| Commit | Time | Author | Message | Files |
+| --- | --- | --- | --- | --- |
+| `898192dc` | 13:39:21Z | Manyfestation | Refine README around KCC20 convention and app features | `README.md` +153/−176 |
+| `cc86ca59` | 13:42:58Z | Manyfestation | Clarify genesis transaction and initial output creation | `README.md` |
+| `2058c13c` | 13:43:29Z | Manyfestation | Describe token deployment through the genesis transaction | `README.md` |
+
+`898192dc`'s parent is `8c8dc8ee`. `cc86ca59`'s parent is `898192dc`. `2058c13c`'s parent is `cc86ca59`. Together `898192dc...2058c13c` is `README.md` +13/−10.
+
+At 13:44:58Z those three left the branch. The open head is [`72767847`](https://github.com/argent-lang/kcc20-reference/commit/72767847934bf7afe95efaf97bbad0028850a4f5), Manyfestation, "Refine README around KCC20 convention and reference app". Its parent is `8c8dc8ee`. The diff is `README.md` only (+156/−176). The README bytes match `2058c13c` (9499 bytes). GitHub says the org pull is open and `clean`, with 18 commits. argent-lang `master` is still `76648f99`.
+
+What the rewrite keeps, now in the author's words: anyone can call `split(take, new_owner)` and move a positive allowance of up to half the remaining amount. Minting and splitting require no deposit-owner signature. `TokenSeed.create` creates a zero-token UTXO. The supply comes from `mint`. Output scheme validation covers all 256 byte values. The split and reclaim entrypoints do not yet have a full conformance suite. Examples execute locally and do not submit.
+
+What the rewrite removes from the README: the owner-scheme byte table, the borrow-scheme table, the unkeyed BLAKE3 sentence, the negative-threshold sentence, and the concrete example numbers (11 tokens, threshold 10, mint 25 then 10/10/5). Those sentences are no longer in the README. They are still in the `8c8dc8ee` sources and tests this note already read. This pass did not re-open `kcc20.ag`.
+
+The README now says the specifications define the conventions and points scheme definitions at kaspanet/kccs `main`:
+
+- [kcc-0020 §1 State](https://github.com/kaspanet/kccs/blob/main/kcc-0020.md#1-state)
+- [kcc-0020 §2 Transfer Interface](https://github.com/kaspanet/kccs/blob/main/kcc-0020.md#2-transfer-interface)
+- [kcc-0020 §5 Borrowed Receive](https://github.com/kaspanet/kccs/blob/main/kcc-0020.md#5-borrowed-receive)
+- [kcc-0002 §2.1 Authority Schemes](https://github.com/kaspanet/kccs/blob/main/kcc-0002.md#21-authority-schemes)
+
+Those headings exist on main `411b41bc`. `kcc-0020.md` there still says `Status: Draft` and still contains `P2PKHHash` twice. Following the new README links does not show the unkeyed `blake3(public_key)` this reference compiles. The code pin for that hash stays `kcc20.ag` at `8c8dc8ee`, not the draft file.
+
+`cc86ca59` and `2058c13c` retitle the section "Deployment and genesis". Deploy means one genesis transaction whose output group holds one `PublicMint` (its `remaining` is the advertised supply), at least one `TokenSeed`, and no pre-minted balances. The minter and the seeds have to be in that same group to share a covenant id. A new genesis transaction is a different covenant id and cannot add a seed to this family. That matches the earlier code reading. It does not add a new entrypoint.
+
+Nothing in this range is a reason to re-run the dispatch-tag check. The artifact was not in the diff.
+
 ## What the note got right
 
 KCC20 state is amount, owner, owner_scheme, borrow_scheme, borrow_guard, extension_commitment. The default calls are `transfer(next states, witness)` and `transfer_delegator(witness)`. Owner schemes are the five bytes `0x00` through `0x04`. Borrow schemes are `0x00` through `0x03`.
@@ -18,10 +51,10 @@ The useful wallet check is the generated artifact around `28dbbe45`. That check 
 
 The sentence "merged pull request #1 from argent-lang/kcc20-review" is a fork merge, and `kcc20-review` is a branch name.
 
-- [argent-lang/kcc20-reference#1](https://github.com/argent-lang/kcc20-reference/pull/1) is open. Head `8c8dc8eeff73482ea7b3144e42c92bbf2a25068f` (7 Oct 12:22Z). Mergeable state was `clean`. Reviews on that pull are still comments from 10-11 Sep. There is no approving review. The CI workflow removed in `764a1057` is still gone. argent-lang `master` is still the 10 Sep stub `76648f99`.
+- [argent-lang/kcc20-reference#1](https://github.com/argent-lang/kcc20-reference/pull/1) is open. The head at 12:22Z was `8c8dc8eeff73482ea7b3144e42c92bbf2a25068f`. The head is now `72767847`. See the section above. Mergeable state is `clean`. Reviews on that pull are still comments from 10-11 Sep. There is no approving review. The CI workflow removed in `764a1057` is still gone. argent-lang `master` is still the 10 Sep stub `76648f99`.
 - The merged pull is [Manyfestation/kcc20-reference#1](https://github.com/Manyfestation/kcc20-reference/pull/1), "Finalize kcc20 initial ref". michaelsutton opened it. Manyfestation merged it at 12:22:29Z. Base was `Manyfestation:finalize-kcc20-reference`. Head was `argent-lang:kcc20-review`.
 - `GET /repos/argent-lang/kcc20-review` is 404. The branch `kcc20-review` exists on argent-lang/kcc20-reference. Its tip is `28dbbe45` (7 Oct 09:56Z), the parent of the merge.
-- "PR number 1 means this repo is young" does not follow. The org pull #1 has been open since 10 Sep and now lists 17 commits. The fork's pull #1 is the merge that just closed.
+- "PR number 1 means this repo is young" does not follow. The org pull #1 has been open since 10 Sep and now lists 18 commits. The fork's pull #1 is the merge that just closed.
 
 ## Change the author
 
