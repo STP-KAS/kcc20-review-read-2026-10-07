@@ -1,5 +1,7 @@
 # KCC20 reference read, 7 Oct 2026
 
+> **8 Oct 2026.** The page below is the 7 Oct reading. KCC-20 is Last Call at [`3fbec524`](https://github.com/kaspanet/kccs/commit/3fbec524abfbc20e87652eb938db218f8c17db17). The reference master is [`c8a08711`](https://github.com/argent-lang/kcc20-reference/commit/c8a087117735a1f87c5c6d115fcddeaf2562c784). The follow-up, the local mint, and the inconsistencies are in [2026-10-08.md](2026-10-08.md).
+
 > **Intentions are good; thought process is questionable.** STP remains delusional. Si vis pacem, para bellum.
 >
 > **Experimental. Not advice.** One desk reading. Not an editor decision. Not a review request.
